@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Manage Users";
+
+}
+
+<h2>Manage Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Change Role
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(model => user.Email)
+                </th>
+                @if (await UserManager.IsInRoleAsync(user, "Admin"))
+                {
+                    <th>Admin</th>
+                }
+                else if (await UserManager.IsInRoleAsync(user, "Manager"))
+                {
+                    <th>Manager</th>
+                }
+                else if (await UserManager.IsInRoleAsync(user, "User"))
+                {
+                    <th>User</th>
+                }
+                <td>
+                    <form method="post">
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>Admin</option>
+                                <option>Manager</option>
+                                <option>User</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">Update Role</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

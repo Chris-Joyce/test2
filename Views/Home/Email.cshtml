@@ -1,0 +1,67 @@
+﻿@model EmployeeTrackingSystem.Models.EmailModel
+@{
+    ViewBag.Title = "Email";
+}
+
+<table>
+    <tr>
+        <th><h2><img src="~/images/ACElogo.jpg" alt="ACE" height="40" />@ViewData["Title"]</h2></th>
+    </tr>
+</table>
+@using (Html.BeginForm("Send", "Email", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Send an Email</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    if (ViewBag.Success != null && (bool)ViewBag.Success)
+    {
+        <h2 class="text-danger">Email sent.</h2>
+    }
+    else if (ViewBag.Success != null && !(bool)ViewBag.Success)
+    {
+        <h2 class="text-danger">retry sending email</h2>
+    }
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.From, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.From, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.To, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.To, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cc, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Cc, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Body, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.Body, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Send" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sent, new { @class = "col-md-2 control-label" })
+        <textarea id="viewEmails" readonly rows="10" cols="30" float="left"></textarea>
+    </div>
+}

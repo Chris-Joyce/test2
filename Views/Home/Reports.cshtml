@@ -1,0 +1,65 @@
+﻿@model IEnumerable<EmployeeTrackingSystem.Models.Employee>
+@{
+    ViewData["Title"] = "Reports";
+}
+<table>
+    <tr>
+        <th><h2><img src="~/images/ACElogo.jpg" alt="ACE" height="40" />@ViewData["Title"]</h2></th>
+        <th><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></th>
+    </tr>
+    <tr>
+        <th>
+            <form class="example" action="action_page.php">
+                <input type="text" placeholder="search employee" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </th>
+    </tr>
+</table>
+<br>
+<table id="MainHeader" style="width:100%">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.Address)</th>
+        <th>@Html.DisplayNameFor(model => model.City)</th>
+        <th>@Html.DisplayNameFor(model => model.State)</th>
+        <th>@Html.DisplayNameFor(model => model.Zip)</th>
+        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+        <th>@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.Address)</td>
+            <td>@Html.DisplayFor(modelItem => item.City)</td>
+            <td>@Html.DisplayFor(modelItem => item.State)</td>
+            <td>@Html.DisplayFor(modelItem => item.Zip)</td>
+            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+            <td>@Html.DisplayFor(modelItem => item.DateOfBirth)</td>
+        </tr>
+    }
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.HireDate)</th>
+        <th>@Html.DisplayNameFor(model => model.LicenseNumber)</th>
+        <th>@Html.DisplayNameFor(model => model.CertificationType)</th>
+        <th>@Html.DisplayNameFor(model => model.CertificationStartDate)</th>
+        <th>@Html.DisplayNameFor(model => model.CertificationEndDate)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.HireDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.LicenseNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.CertificationType)</td>
+            <td>@Html.DisplayFor(modelItem => item.CertificationStartDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.CertificationEndDate)</td>
+        </tr>
+    }
+</table>
